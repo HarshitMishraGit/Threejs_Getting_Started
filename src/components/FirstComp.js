@@ -16,6 +16,22 @@ function FirstComp(props) {
     const material = new THREE.MeshBasicMaterial({ color: 'red' });
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
+
+    mesh.position.set(1, 1, 1);
+    //Axes helper
+    const axesHelper = new THREE.AxesHelper();
+    scene.add(axesHelper);
+
+    // scale
+    // mesh.scale.x=2;
+    // mesh.scale.y=2;
+    // mesh.scale.z=2;
+    mesh.scale.set(2, 0.5, 0.5);
+
+    // rotation
+    // mesh.rotation.reorder("YZX");
+    mesh.rotation.y = Math.PI / 2;
+    // change the axis order
     // size
     const sizes = {
       width:800,
@@ -27,6 +43,9 @@ function FirstComp(props) {
     camera.position.y = 2;
     scene.add(camera);
 
+    // change camera position
+    // camera.lookAt(new THREE.Vector3(1, 1, 2))
+    camera.lookAt(mesh.position);
     // renderer
     const canvas = document.getElementById('webgl');
     const renderer = new THREE.WebGLRenderer({
