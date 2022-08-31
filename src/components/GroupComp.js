@@ -52,18 +52,18 @@ function GroupComp() {
       renderer.setSize(sizes.width, sizes.height);
   
         // renderer.render(scene, camera);
-        // time
-        let time = Date.now();
+        // create a intanse of the class Clock in three js
+const clock=new THREE.Clock();
 
-        // Animation
-        const tick = () => {
-            let currentTime = Date.now();
-            let delta = (currentTime - time);
-            time = currentTime;// update time
+//Animation
+  const tick = () => {
+          const elapsedTime=clock.getElapsedTime();
             
             requestAnimationFrame(tick);
-            // we can control the speed of  rotation of the group by facotor of delta
-            group.rotation.y += 0.001 *delta;
+        //    to get time period of one second
+           group.rotation.y=elapsedTime* Math.PI*2;
+      group.position.y = Math.sin(elapsedTime * 2) * 2;
+    //   camera.lookAt(group.position);
             renderer.render(scene, camera);
         }
 
