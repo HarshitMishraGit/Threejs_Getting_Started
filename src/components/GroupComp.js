@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import * as THREE from 'three';
-
+import gsap from 'gsap';
 
 function GroupComp() {
     useEffect(() => {
@@ -53,16 +53,17 @@ function GroupComp() {
   
         // renderer.render(scene, camera);
         // create a intanse of the class Clock in three js
-const clock=new THREE.Clock();
-
+// const clock=new THREE.Clock();
+        gsap.to(group.position, {duration:1,delay:1,x:4});
+        gsap.to(group.position, {duration:1,delay:2,x:0});
 //Animation
   const tick = () => {
-          const elapsedTime=clock.getElapsedTime();
+        //   const elapsedTime=clock.getElapsedTime();
             
             requestAnimationFrame(tick);
-        //    to get time period of one second
-           group.rotation.y=elapsedTime* Math.PI*2;
-      group.position.y = Math.sin(elapsedTime * 2) * 2;
+    //     //    to get time period of one second
+    //        group.rotation.y=elapsedTime* Math.PI*2;
+    //   group.position.y = Math.sin(elapsedTime * 2) * 2;
     //   camera.lookAt(group.position);
             renderer.render(scene, camera);
         }
